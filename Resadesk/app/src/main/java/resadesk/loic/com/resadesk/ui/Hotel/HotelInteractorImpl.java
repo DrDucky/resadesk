@@ -1,7 +1,6 @@
-package resadesk.loic.com.resadesk;
+package resadesk.loic.com.resadesk.ui.Hotel;
 
 import com.google.gson.Gson;
-import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
@@ -10,15 +9,8 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
-import com.android.volley.VolleyLog;
-import com.android.volley.toolbox.JsonArrayRequest;
-import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
 
 import android.content.Context;
 import android.util.Log;
@@ -26,22 +18,22 @@ import android.util.Log;
 import java.util.Arrays;
 import java.util.List;
 
+import resadesk.loic.com.resadesk.Config;
 import resadesk.loic.com.resadesk.models.Hotel;
 
-import static android.R.attr.data;
 import static com.android.volley.VolleyLog.TAG;
+import static java.util.Arrays.asList;
 
 /**
  * Created by lmecatti on 19/11/2016.
+ * Class for request Network
  */
 
 public class HotelInteractorImpl implements HotelInteractor {
 
     private Context mContext;
 
-    private static final String EXACT_MATCH_KEY = "exactMatch";
-
-    private static final String ID_HOTEL_KEY = "id";
+    private static final String EXACT_MATCH_JSON = "exactMatch";
 
     public HotelInteractorImpl(Context pContext) {
         this.mContext = pContext;
@@ -63,11 +55,10 @@ public class HotelInteractorImpl implements HotelInteractor {
 
             @Override
             public void onErrorResponse(VolleyError vVolleyError) {
-                VolleyLog.d(TAG, "Erreur lors de la récupération des informations du restaurant: " + vVolleyError.getMessage());
                 dataRetrievedListener.onError();
             }
         });
-        // On ajoute les requêtes à effectuer
+        //Request added to queue for launch
         queue.add(vRequestHotel);
     }
 
@@ -77,9 +68,7 @@ public class HotelInteractorImpl implements HotelInteractor {
         JsonParser vparser = new JsonParser();
         JsonElement vJsonElement = vparser.parse(response);
         JsonObject vJsonObject = vJsonElement.getAsJsonObject();
-        JsonElement vExactMatch = vJsonObject.get("exactMatch");
-        List<Hotel> hotels = Arrays.asList(vGson.fromJson(vExactMatch, Hotel[].class));
-
-        return hotels;
+        JsonElement vExactMatch = vJsonObject.get(EXACT_MATCH_JSON);
+        return Arrays.asList(vGson.fromJson(vExactMatch, Hotel[].class));
     }
 }

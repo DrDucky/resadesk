@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Resadesk</string>
+    <string name="loading_datas">Chargement des données...</string>
 </resources>

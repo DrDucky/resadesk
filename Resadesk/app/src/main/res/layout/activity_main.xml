@@ -8,16 +8,23 @@
         android:paddingRight="@dimen/activity_horizontal_margin"
         android:paddingTop="@dimen/activity_vertical_margin"
         android:paddingBottom="@dimen/activity_vertical_margin"
-        tools:context="resadesk.loic.com.resadesk.MainActivity">
+        tools:context="resadesk.loic.com.resadesk.ui.Hotel.MainActivity">
 
     <ListView
             android:id="@+id/listview_hotels"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"></ListView>
+            android:layout_height="match_parent" />
+
+    <ListView
+            android:id="@+id/listview_weekends"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="gone" />
 
     <TextView
-            android:id="@+id/tv_id_hotel"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Hello World!" />
+            android:id="@+id/loading_hotels"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="@string/loading_datas"/>
+
 </RelativeLayout>

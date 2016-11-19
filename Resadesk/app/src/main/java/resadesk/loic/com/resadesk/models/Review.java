@@ -7,4 +7,12 @@ package resadesk.loic.com.resadesk.models;
 public class Review {
 
     private String average;
+
+    public String getAverage() {
+        return average;
+    }
+
+    public void setAverage(String average) {
+        this.average = average;
+    }
 }

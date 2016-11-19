@@ -9,4 +9,9 @@ public class Adresse {
     private String street;
     private String zipCode;
     private String cityName;
+
+    @Override
+    public String toString() {
+        return street + ", " + zipCode;
+    }
 }

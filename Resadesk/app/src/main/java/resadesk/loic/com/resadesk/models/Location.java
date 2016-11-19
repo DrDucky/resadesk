@@ -6,6 +6,12 @@ package resadesk.loic.com.resadesk.models;
 
 public class Location {
 
-        private Adresse completeAddress;
-        private String address;
+    private Adresse completeAddress;
+
+    private String address;
+
+    @Override
+    public String toString() {
+        return completeAddress.toString() + " " + address;
+    }
 }

@@ -1,8 +1,4 @@
-package resadesk.loic.com.resadesk;
-
-import com.google.gson.JsonObject;
-
-import org.json.JSONObject;
+package resadesk.loic.com.resadesk.ui.Hotel;
 
 import android.content.Context;
 
@@ -12,6 +8,7 @@ import resadesk.loic.com.resadesk.models.Hotel;
 
 /**
  * Created by lmecatti on 19/11/2016.
+ * Hotel Presenter that link MainActivity <-> Datas Hotels
  */
 
 public class HotelPresenterImpl implements HotelPresenter, DataRetrievedListener {
@@ -37,6 +34,8 @@ public class HotelPresenterImpl implements HotelPresenter, DataRetrievedListener
     public void onSuccess(String response) {
         mView.hideProgress();
         List<Hotel> vHotels = mHotelInteractor.parsingHotel(this,response);
+        mView.setHotelAdapter(vHotels);
+        mView.setOnClickHotelListView();
     }
 
     @Override
